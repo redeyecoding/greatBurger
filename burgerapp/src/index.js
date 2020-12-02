@@ -7,8 +7,12 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import reducer from './store/reducer';
+import { reduxDevTools } from './store/reduxTools';
 
-const store = createStore(reducer);
+const store = createStore(
+    reducer,
+    reduxDevTools
+    );
 
 const app = (
     <Provider store={store}>
