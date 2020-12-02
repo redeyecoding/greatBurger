@@ -2,8 +2,8 @@ import * as actionTypes from './actions';
 
 const initialState = {
     ingredients: {
-        bacon: 0,
         salad: 0,
+        bacon: 0,
         cheese: 0,
         meat: 0
     },
@@ -11,17 +11,26 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-    switch(action.type) {
+    const { type, ingredientName } = action
+    switch(type) {
         case actionTypes.ADD_INGREDIENT:
             return {
                 ...state,
                 ingredients: {
                     ...state.ingredients,
-                    [ action.ingredientName ]: state.ingredients[ action.ingredientName ] + 1
+                    [ ingredientName ]: state.ingredients[ ingredientName ] + 1
                 }
             }
         case actionTypes.REMOVE_INGREDIENT:
-            return
+            return {
+                ...state,
+                ingredients: {
+                    ...state.ingredients,
+                    [ ingredientName ]: state.ingredients[ ingredientName ] - 1
+                }
+            }
+        default:
+            return state;
     }
 };
 
