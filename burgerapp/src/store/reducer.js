@@ -17,14 +17,10 @@ const initialState = {
     totalPrice: 0,
 };
 
-const updatePurchaseState = () => {
-    console.log(initialState.ingredients)
-};
-
 
 const reducer = (state = initialState, action) => {
-    const { type, ingredientName, ingredientPrice } = action;
-    updatePurchaseState()
+    const { type, ingredientName, purchasable } = action;
+
     switch(type) {
         case actionTypes.ADD_INGREDIENT:
             return {
@@ -34,10 +30,9 @@ const reducer = (state = initialState, action) => {
                     [ ingredientName ]: state.ingredients[ ingredientName ] + 1
                 },
                 totalPrice: state.totalPrice + INGREDIENT_PRICES[ ingredientName ],
-                
             }
         case actionTypes.REMOVE_INGREDIENT:
-            return {
+                return {
                 ...state,
                 ingredients: {
                     ...state.ingredients,
@@ -45,13 +40,16 @@ const reducer = (state = initialState, action) => {
                 },
                 totalPrice: state.totalPrice - INGREDIENT_PRICES[ ingredientName ],
             }
-        case actionTypes.ORDER_BURGER:
-            return {
 
-            }
+        // case actionTypes.ORDER_BURGER:
+        //     return {
+
+        //     }
         default:
             return state;
-    }
+    };
+
+
 };
 
 
