@@ -23,8 +23,7 @@ class Checkout extends Component {
                     checkoutCancelled={this.checkoutCancelledHandler}
                     checkoutContinued={this.checkoutContinuedHandler} />
 
-            <Route 
-                    path={this.props.match.path + '/contact-data'} 
+            <Route path={this.props.match.path + '/contact-data'} 
                     component={ContactData} />
 
             </div>
@@ -62,10 +61,10 @@ export default connect(mapStateToProps)(Checkout);
     //     }
     //     this.setState( { ingredients: ingredients, totalPrice: price } );
     // }
-                {/* <Route 
-                    path={this.props.match.path + '/contact-data'} 
-                    // render={(props) => (
-                    //     <ContactData 
-                    //         ingredients={this.props.ings} 
-                    //         price={this.props.price} {...props} />
-                    // )} /> */}
+                // {/* <Route 
+                //     path={this.props.match.path + '/contact-data'} 
+                //     // render={(props) => (
+                //     //     <ContactData 
+                //     //         ingredients={this.props.ings} 
+                //     //         price={this.props.price} {...props} />
+                //     // )} /> */}
