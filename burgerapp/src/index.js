@@ -2,17 +2,38 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import reducer from './store/reducer';
 import { reduxDevTools } from './store/reduxTools';
 
+
+const rootReducer = combineReducers({
+    reduc: reducer
+});
+
+
+const logger = store => {
+    return next => {
+        return action => {
+            console.log('[MIDDLEWARE]', action);
+            const result = next(action);
+            console.log('[MIDDLEWARE] next state', store.getState());
+            return result;
+        }
+    }
+};
+
+const reduxEnhancers = compose(applyMiddleware(logger),reduxDevTools);
+
+
 const store = createStore(
     reducer,
-    reduxDevTools
+    reduxEnhancers
     );
+
 
 const app = (
     <Provider store={store}>
