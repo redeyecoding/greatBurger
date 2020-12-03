@@ -19,7 +19,7 @@ const initialState = {
 
 
 const reducer = (state = initialState, action) => {
-    const { type, ingredientName, purchasable } = action;
+    const { type, ingredientName } = action;
 
     switch(type) {
         case actionTypes.ADD_INGREDIENT:
@@ -38,18 +38,11 @@ const reducer = (state = initialState, action) => {
                     ...state.ingredients,
                     [ ingredientName ]: state.ingredients[ ingredientName ] - 1
                 },
-                totalPrice: state.totalPrice - INGREDIENT_PRICES[ ingredientName ],
+                totalPrice: state.totalPrice - INGREDIENT_PRICES[ ingredientName ]
             }
-
-        // case actionTypes.ORDER_BURGER:
-        //     return {
-
-        //     }
         default:
-            return state;
+            return state
     };
-
-
 };
 
 
