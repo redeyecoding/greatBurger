@@ -19,7 +19,7 @@ class BurgerBuilder extends Component {
     state = {
         purchasing: false,
         loading: false,
-        error: false
+        error: false,
     }
 
     componentDidMount () {
@@ -61,7 +61,7 @@ class BurgerBuilder extends Component {
             ...this.props.ings
         };
         for ( let key in disabledInfo ) {
-            disabledInfo[key] = disabledInfo[key] <= 0
+            disabledInfo[key] = disabledInfo[key] <= 0;
         }
         let orderSummary = null;
         let burger = this.state.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
@@ -85,9 +85,11 @@ class BurgerBuilder extends Component {
                 purchaseCancelled={this.purchaseCancelHandler}
                 purchaseContinued={this.purchaseContinueHandler} />;
         }
+       
         if ( this.state.loading ) {
             orderSummary = <Spinner />;
         }
+        
         // {salad: true, meat: false, ...}
         return (
             <Aux>
