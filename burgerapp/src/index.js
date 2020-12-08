@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
 const logger = store => {
     return next => {
         return action => {
-            console.log('[MIDDLEWARE]', action);
+            console.log('[MIDDLEWARE] Dispatching', action);
             const result = next(action);
             console.log('[MIDDLEWARE] next state', store.getState());
             return result;
@@ -31,7 +31,7 @@ const reduxEnhancers = compose(applyMiddleware(logger),reduxDevTools);
 
 const store = createStore(
     reducer,
-    reduxEnhancers
+    applyMiddleware(logger)
     );
 
 
