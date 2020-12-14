@@ -6,13 +6,14 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import reducer from './store/reducer';
+import reducer from './store/reducers/burgerBuilder';
 import { reduxDevTools } from './store/reduxTools';
+import thunk from 'redux-thunk';
 
 
-const rootReducer = combineReducers({
-    reduc: reducer
-});
+// const rootReducer = combineReducers({
+//     ingredients: reducer
+// });
 
 
 const logger = store => {
@@ -26,12 +27,12 @@ const logger = store => {
     }
 };
 
-const reduxEnhancers = compose(applyMiddleware(logger),reduxDevTools);
+const reduxEnhancers = compose(applyMiddleware(thunk), reduxDevTools);
 
 
 const store = createStore(
     reducer,
-    applyMiddleware(logger)
+    reduxEnhancers
     );
 
 
