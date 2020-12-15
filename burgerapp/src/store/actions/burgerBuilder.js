@@ -1,50 +1,41 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-orders';
 
-
-// BurgerBuilder Action Creators
-
-export const addIngredient = (ingredient, price) => {
+export const addIngredient = ( name ) => {
     return {
         type: actionTypes.ADD_INGREDIENT,
-        ingredientPrice: price,
-        ingredientName: ingredient
-    }
+        ingredientName: name
+    };
 };
 
-
-export const removeIngredient = (ingredient) => {
+export const removeIngredient = ( name ) => {
     return {
         type: actionTypes.REMOVE_INGREDIENT,
-        ingredientName: ingredient
-    }
+        ingredientName: name
+    };
 };
 
-
 export const setIngredients = ( ingredients ) => {
-    return  {
+    return {
         type: actionTypes.SET_INGREDIENTS,
         ingredients: ingredients
-    }
+    };
 };
 
 export const fetchIngredientsFailed = () => {
     return {
         type: actionTypes.FETCH_INGREDIENTS_FAILED
-    }
+    };
 };
 
 export const initIngredients = () => {
     return dispatch => {
-        // Async Code
         axios.get( 'https://recburgerapp.firebaseio.com/Ingredients.json' )
             .then( response => {
-                
-                dispatch(setIngredients( response.data ));
+               dispatch(setIngredients(response.data));
             } )
             .catch( error => {
-                // dispatch failed attempt
-                dispatch( fetchIngredientsFailed() );
+                dispatch(fetchIngredientsFailed());
             } );
-    }
+    };
 };
